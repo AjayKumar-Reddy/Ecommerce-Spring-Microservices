@@ -1,0 +1,8 @@
+# Ignore PDF assets
+*.pdf
+Enterprise Project for Product Companies.pdf
+
+# Ignore target directories
+**/target/
+**/node_modules/
+**/.next/
