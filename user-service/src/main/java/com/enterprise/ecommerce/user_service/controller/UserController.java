@@ -6,11 +6,13 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/users")
-@CrossOrigin(origins = "*") // Allow frontend to call directly if not using proxy
+@CrossOrigin(origins = "*")
 public class UserController {
 
     @Autowired
@@ -37,44 +39,30 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public ResponseEntity<?> getProfile(@RequestHeader(value = "Authorization", required = false) String tokenHeader) {
-        if (tokenHeader == null || !tokenHeader.startsWith("Bearer mock-jwt-token-")) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Missing or invalid authorization token");
-        }
+    public ResponseEntity<?> getProfile() {
         try {
-            String token = tokenHeader.substring(7); // Remove "Bearer "
-            String[] parts = token.split("-");
-            if (parts.length < 4) {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Malformed authorization token");
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            if (auth == null || auth.getCredentials() == null) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
             }
-            Long userId = Long.parseLong(parts[3]);
+            Long userId = (Long) auth.getCredentials();
             UserResponse response = userService.getProfile(userId);
             return ResponseEntity.ok(response);
-        } catch (NumberFormatException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid user ID in token");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
 
     @PutMapping("/profile")
-    public ResponseEntity<?> updateProfile(
-            @RequestHeader(value = "Authorization", required = false) String tokenHeader,
-            @RequestBody UserUpdateRequest request) {
-        if (tokenHeader == null || !tokenHeader.startsWith("Bearer mock-jwt-token-")) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Missing or invalid authorization token");
-        }
+    public ResponseEntity<?> updateProfile(@RequestBody UserUpdateRequest request) {
         try {
-            String token = tokenHeader.substring(7);
-            String[] parts = token.split("-");
-            if (parts.length < 4) {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Malformed authorization token");
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            if (auth == null || auth.getCredentials() == null) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
             }
-            Long userId = Long.parseLong(parts[3]);
+            Long userId = (Long) auth.getCredentials();
             UserResponse response = userService.updateProfile(userId, request);
             return ResponseEntity.ok(response);
-        } catch (NumberFormatException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid user ID in token");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }

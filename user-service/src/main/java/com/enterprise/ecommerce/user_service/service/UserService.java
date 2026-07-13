@@ -3,11 +3,10 @@ package com.enterprise.ecommerce.user_service.service;
 import com.enterprise.ecommerce.user_service.dto.*;
 import com.enterprise.ecommerce.user_service.model.User;
 import com.enterprise.ecommerce.user_service.repository.UserRepository;
+import com.enterprise.ecommerce.user_service.security.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
 import java.util.Optional;
 
 @Service
@@ -15,6 +14,12 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JwtUtils jwtUtils;
 
     public UserResponse register(UserRegisterRequest request) {
         if (userRepository.existsByUsername(request.getUsername())) {
@@ -36,7 +41,7 @@ public class UserService {
 
         User user = User.builder()
                 .username(request.getUsername())
-                .password(hashPassword(request.getPassword()))
+                .password(passwordEncoder.encode(request.getPassword()))
                 .email(request.getEmail())
                 .fullName(request.getFullName())
                 .role(role)
@@ -51,12 +56,12 @@ public class UserService {
         User user = userRepository.findByUsername(request.getUsername())
                 .orElseThrow(() -> new RuntimeException("Invalid username or password"));
 
-        if (!user.getPassword().equals(hashPassword(request.getPassword()))) {
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
             throw new RuntimeException("Invalid username or password");
         }
 
-        // Generate a mock token for Phase 1
-        String token = "mock-jwt-token-" + user.getId() + "-" + user.getUsername();
+        // Generate a real JWT token via JwtUtils
+        String token = jwtUtils.generateToken(user.getUsername(), user.getId(), user.getRole());
         return new LoginResponse(token, UserResponse.fromUser(user));
     }
 
@@ -83,20 +88,10 @@ public class UserService {
             user.setAddress(request.getAddress());
         }
         if (request.getPassword() != null && !request.getPassword().trim().isEmpty()) {
-            user.setPassword(hashPassword(request.getPassword()));
+            user.setPassword(passwordEncoder.encode(request.getPassword()));
         }
 
         User updatedUser = userRepository.save(user);
         return UserResponse.fromUser(updatedUser);
-    }
-
-    private String hashPassword(String password) {
-        try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] hash = digest.digest(password.getBytes());
-            return Base64.getEncoder().encodeToString(hash);
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("Error hashing password", e);
-        }
     }
 }
