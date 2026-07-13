@@ -47,9 +47,9 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[radial-gradient(circle_at_10%_20%,rgba(139,92,246,0.1)_0%,transparent_40%),radial-gradient(circle_at_90%_80%,rgba(59,130,246,0.08)_0%,transparent_40%)] p-5">
-      <div className="w-full max-w-[500px] glassmorphism-card rounded-[28px] p-8 md:p-10 shadow-premium animate-[fadeIn_0.6s_ease-out]">
-        <div className="font-heading text-3xl font-extrabold tracking-wider bg-gradient-to-r from-white to-primary bg-clip-text text-transparent flex items-center justify-center gap-2 mb-6">
+    <div className="min-h-screen flex items-center justify-center p-5">
+      <div className="w-full max-w-[500px] bg-[#020617] border border-white/10 rounded-[28px] p-8 md:p-10 shadow-premium animate-[fadeIn_0.6s_ease-out]">
+        <div className="font-heading text-3xl font-extrabold tracking-wider bg-gradient-to-r from-white via-slate-200 to-indigo-400 bg-clip-text text-transparent flex items-center justify-center gap-2 mb-6">
           <svg
             width="32"
             height="32"
@@ -80,26 +80,26 @@ export default function RegisterPage() {
             />
             <defs>
               <linearGradient id="logo-grad" x1="2" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse">
-                <stop stopColor="#8b5cf6" />
-                <stop offset="1" stopColor="#3b82f6" />
+                <stop stopColor="#6366f1" />
+                <stop offset="1" stopColor="#4f46e5" />
               </linearGradient>
             </defs>
           </svg>
           <span>AURA</span>
         </div>
 
-        <h1 className="text-2xl font-extrabold text-center mb-2 text-text-primary">Create Account</h1>
-        <p className="text-sm text-text-secondary text-center mb-8">Sign up to access premium products and recommendations</p>
+        <h1 className="text-2xl font-extrabold text-center mb-2 text-white">Create Account</h1>
+        <p className="text-sm text-slate-400 text-center mb-8">Sign up to access premium products and recommendations</p>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          {error && <div className="bg-error/10 border border-error/20 text-error px-4 py-3 rounded-xl text-xs font-semibold text-center">{error}</div>}
+          {error && <div className="bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-3 rounded-xl text-xs font-semibold text-center">{error}</div>}
 
           <div className="flex flex-col gap-1.5">
-            <label htmlFor="fullName" className="text-xs font-semibold text-text-primary">Full Name *</label>
+            <label htmlFor="fullName" className="text-xs font-semibold text-white">Full Name *</label>
             <input
               type="text"
               id="fullName"
-              className="bg-white/2 border border-white/10 text-text-primary px-4 py-2.5 rounded-xl outline-none text-sm transition-all duration-300 focus:border-primary focus:bg-white/4"
+              className="bg-white/5 border border-white/10 text-white px-4 py-2.5 rounded-xl outline-none text-sm transition-all duration-300 focus:border-indigo-500"
               placeholder="John Doe"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
@@ -108,11 +108,11 @@ export default function RegisterPage() {
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label htmlFor="email" className="text-xs font-semibold text-text-primary">Email Address *</label>
+            <label htmlFor="email" className="text-xs font-semibold text-white">Email Address *</label>
             <input
               type="email"
               id="email"
-              className="bg-white/2 border border-white/10 text-text-primary px-4 py-2.5 rounded-xl outline-none text-sm transition-all duration-300 focus:border-primary focus:bg-white/4"
+              className="bg-white/5 border border-white/10 text-white px-4 py-2.5 rounded-xl outline-none text-sm transition-all duration-300 focus:border-indigo-500"
               placeholder="john@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -121,11 +121,11 @@ export default function RegisterPage() {
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label htmlFor="username" className="text-xs font-semibold text-text-primary">Username *</label>
+            <label htmlFor="username" className="text-xs font-semibold text-white">Username *</label>
             <input
               type="text"
               id="username"
-              className="bg-white/2 border border-white/10 text-text-primary px-4 py-2.5 rounded-xl outline-none text-sm transition-all duration-300 focus:border-primary focus:bg-white/4"
+              className="bg-white/5 border border-white/10 text-white px-4 py-2.5 rounded-xl outline-none text-sm transition-all duration-300 focus:border-indigo-500"
               placeholder="johndoe"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -134,11 +134,11 @@ export default function RegisterPage() {
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label htmlFor="password" className="text-xs font-semibold text-text-primary">Password * (min. 6 chars)</label>
+            <label htmlFor="password" className="text-xs font-semibold text-white">Password * (min. 6 chars)</label>
             <input
               type="password"
               id="password"
-              className="bg-white/2 border border-white/10 text-text-primary px-4 py-2.5 rounded-xl outline-none text-sm transition-all duration-300 focus:border-primary focus:bg-white/4"
+              className="bg-white/5 border border-white/10 text-white px-4 py-2.5 rounded-xl outline-none text-sm transition-all duration-300 focus:border-indigo-500"
               placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -147,10 +147,10 @@ export default function RegisterPage() {
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label htmlFor="role" className="text-xs font-semibold text-text-primary">Account Type *</label>
+            <label htmlFor="role" className="text-xs font-semibold text-white">Account Type *</label>
             <select
               id="role"
-              className="bg-slate-900 border border-white/10 text-text-primary px-4 py-2.5 rounded-xl outline-none text-sm cursor-pointer transition-all duration-300 focus:border-primary"
+              className="bg-slate-900 border border-white/10 text-white px-4 py-2.5 rounded-xl outline-none text-sm cursor-pointer transition-all duration-300 focus:border-indigo-500"
               value={role}
               onChange={(e) => setRole(e.target.value)}
             >
@@ -160,25 +160,25 @@ export default function RegisterPage() {
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label htmlFor="address" className="text-xs font-semibold text-text-primary">Shipping Address</label>
+            <label htmlFor="address" className="text-xs font-semibold text-white">Shipping Address</label>
             <input
               type="text"
               id="address"
-              className="bg-white/2 border border-white/10 text-text-primary px-4 py-2.5 rounded-xl outline-none text-sm transition-all duration-300 focus:border-primary focus:bg-white/4"
+              className="bg-white/5 border border-white/10 text-white px-4 py-2.5 rounded-xl outline-none text-sm transition-all duration-300 focus:border-indigo-500"
               placeholder="123 Main St, New York, NY"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
             />
           </div>
 
-          <button type="submit" className="bg-gradient-to-r from-primary to-secondary text-white py-3 rounded-xl text-sm font-bold cursor-pointer shadow-[0_4px_15px_rgba(139,92,246,0.25)] mt-2 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(139,92,246,0.35)] disabled:opacity-50 disabled:cursor-not-allowed" disabled={loading}>
+          <button type="submit" className="bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 text-white py-3 rounded-xl text-sm font-bold cursor-pointer shadow-[0_4px_15px_rgba(79,70,229,0.25)] mt-2 transition-all duration-300 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed" disabled={loading}>
             {loading ? "Registering..." : "Sign Up"}
           </button>
         </form>
 
-        <p className="text-xs text-text-secondary text-center mt-6">
+        <p className="text-xs text-slate-400 text-center mt-6">
           Already have an account?{" "}
-          <Link href="/login" className="text-primary-hover font-semibold underline hover:text-primary">
+          <Link href="/login" className="text-indigo-400 font-semibold underline hover:text-indigo-500">
             Sign In
           </Link>
         </p>

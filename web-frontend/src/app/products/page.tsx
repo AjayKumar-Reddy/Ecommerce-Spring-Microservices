@@ -75,7 +75,6 @@ function ProductsCatalogContent() {
   const handleCategorySelect = (category: string) => {
     setActiveCategory(category);
     setPage(0);
-    // Update URL query parameters
     if (category === "All") {
       router.push("/products");
     } else {
@@ -99,14 +98,14 @@ function ProductsCatalogContent() {
       <div className="flex-1 max-w-[1400px] mx-auto w-full px-6 py-10 md:px-10 grid grid-cols-1 md:grid-cols-[260px_1fr] gap-10">
         {/* Sidebar Filters */}
         <aside className="flex flex-col gap-8 self-start sticky top-[100px] hidden md:block">
-          <div className="glassmorphism-card rounded-2xl p-6">
-            <h2 className="text-lg font-bold mb-5 border-b border-white/10 pb-2.5">Categories</h2>
-            <ul className="list-none flex flex-col gap-3">
+          <div className="glassmorphism-card rounded-2xl p-6 border border-white/5">
+            <h2 className="text-base font-bold text-white mb-5 border-b border-white/10 pb-2.5">Categories</h2>
+            <ul className="list-none flex flex-col gap-2">
               <li
-                className={`text-sm font-medium cursor-pointer px-3 py-2 rounded-lg transition-all duration-300 hover:bg-white/3 hover:text-text-primary ${
+                className={`text-sm font-medium cursor-pointer px-3 py-2 rounded-lg transition-all duration-300 hover:bg-white/5 hover:text-white ${
                   activeCategory === "All"
-                    ? "bg-primary-glow text-primary-hover border-l-3 border-primary rounded-l-none rounded-r-lg"
-                    : "text-text-secondary"
+                    ? "bg-indigo-600/10 text-indigo-400 border-l-2 border-indigo-500 rounded-l-none rounded-r-lg"
+                    : "text-slate-400"
                 }`}
                 onClick={() => handleCategorySelect("All")}
               >
@@ -115,10 +114,10 @@ function ProductsCatalogContent() {
               {categories.map((category) => (
                 <li
                   key={category}
-                  className={`text-sm font-medium cursor-pointer px-3 py-2 rounded-lg transition-all duration-300 hover:bg-white/3 hover:text-text-primary ${
+                  className={`text-sm font-medium cursor-pointer px-3 py-2 rounded-lg transition-all duration-300 hover:bg-white/5 hover:text-white ${
                     activeCategory === category
-                      ? "bg-primary-glow text-primary-hover border-l-3 border-primary rounded-l-none rounded-r-lg"
-                      : "text-text-secondary"
+                      ? "bg-indigo-600/10 text-indigo-400 border-l-2 border-indigo-500 rounded-l-none rounded-r-lg"
+                      : "text-slate-400"
                   }`}
                   onClick={() => handleCategorySelect(category)}
                 >
@@ -133,12 +132,12 @@ function ProductsCatalogContent() {
         <main className="flex flex-col gap-8">
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-2xl md:text-3xl font-extrabold">
+              <h1 className="text-2xl md:text-3xl font-extrabold text-white">
                 {activeCategory === "All" ? "All Products" : activeCategory}
               </h1>
             </div>
             <div className="flex items-center gap-4">
-              <select className="bg-slate-900 border border-white/10 text-text-primary px-4 py-2 rounded-full outline-none text-sm cursor-pointer transition-all duration-300 focus:border-primary" onChange={handleSortChange}>
+              <select className="bg-slate-900 border border-white/10 text-slate-200 px-4 py-2 rounded-full outline-none text-sm cursor-pointer transition-all duration-300 focus:border-indigo-500" onChange={handleSortChange}>
                 <option value="id-asc">Sort: Default</option>
                 <option value="price-asc">Price: Low to High</option>
                 <option value="price-desc">Price: High to Low</option>
@@ -149,11 +148,11 @@ function ProductsCatalogContent() {
 
           {loading ? (
             <div className="flex flex-col items-center justify-center min-h-[400px] gap-4">
-              <div className="w-10 h-10 border-3 border-primary/20 border-t-primary rounded-full animate-spin" />
-              <p className="text-sm text-text-secondary">Fetching products...</p>
+              <div className="w-10 h-10 border-2 border-indigo-600/20 border-t-indigo-500 rounded-full animate-spin" />
+              <p className="text-sm text-slate-400">Fetching products...</p>
             </div>
           ) : products.length === 0 ? (
-            <div className="flex flex-col items-center justify-center min-h-[400px] gap-4 text-text-secondary">
+            <div className="flex flex-col items-center justify-center min-h-[400px] gap-4 text-slate-400">
               <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <circle cx="12" cy="12" r="10"></circle>
                 <line x1="8" y1="12" x2="16" y2="12"></line>
@@ -174,18 +173,18 @@ function ProductsCatalogContent() {
               {totalPages > 1 && (
                 <div className="flex justify-center items-center gap-4 mt-10">
                   <button
-                    className="bg-slate-900 border border-white/10 text-text-primary w-10 h-10 rounded-full cursor-pointer flex items-center justify-center transition-all duration-300 hover:border-primary hover:text-primary-hover disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="bg-[#020617] border border-white/10 text-white w-10 h-10 rounded-full cursor-pointer flex items-center justify-center transition-all duration-300 hover:border-indigo-500 hover:text-indigo-400 disabled:opacity-40 disabled:cursor-not-allowed"
                     onClick={() => setPage((p) => Math.max(p - 1, 0))}
                     disabled={page === 0}
                     aria-label="Previous page"
                   >
                     &lt;
                   </button>
-                  <span className="text-sm font-semibold text-text-secondary">
+                  <span className="text-sm font-semibold text-slate-400">
                     Page {page + 1} of {totalPages}
                   </span>
                   <button
-                    className="bg-slate-900 border border-white/10 text-text-primary w-10 h-10 rounded-full cursor-pointer flex items-center justify-center transition-all duration-300 hover:border-primary hover:text-primary-hover disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="bg-[#020617] border border-white/10 text-white w-10 h-10 rounded-full cursor-pointer flex items-center justify-center transition-all duration-300 hover:border-indigo-500 hover:text-indigo-400 disabled:opacity-40 disabled:cursor-not-allowed"
                     onClick={() => setPage((p) => Math.min(p + 1, totalPages - 1))}
                     disabled={page === totalPages - 1}
                     aria-label="Next page"
@@ -206,8 +205,8 @@ export default function ProductsPage() {
   return (
     <Suspense fallback={
       <div className="flex flex-col items-center justify-center min-h-[400px] gap-4">
-        <div className="w-10 h-10 border-3 border-primary/20 border-t-primary rounded-full animate-spin" />
-        <p className="text-sm text-text-secondary">Loading Catalog...</p>
+        <div className="w-10 h-10 border-2 border-indigo-600/20 border-t-indigo-500 rounded-full animate-spin" />
+        <p className="text-sm text-slate-400">Loading Catalog...</p>
       </div>
     }>
       <ProductsCatalogContent />

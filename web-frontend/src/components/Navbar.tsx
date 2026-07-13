@@ -23,8 +23,8 @@ export default function Navbar({ onCartClick }: NavbarProps) {
   };
 
   return (
-    <nav className="w-full fixed top-0 left-0 right-0 h-[70px] glassmorphism flex items-center justify-between px-6 md:px-10 z-50 shadow-premium transition-all duration-300">
-      <Link href="/" className="font-heading text-2xl font-extrabold tracking-wider bg-gradient-to-r from-white to-primary bg-clip-text text-transparent flex items-center gap-2 cursor-pointer">
+    <nav className="w-full fixed top-0 left-0 right-0 h-[70px] bg-slate-950/80 backdrop-blur-md border-b border-white/5 flex items-center justify-between px-6 md:px-10 z-50 shadow-premium transition-all duration-300">
+      <Link href="/" className="font-heading text-2xl font-extrabold tracking-wider bg-gradient-to-r from-white via-slate-200 to-indigo-400 bg-clip-text text-transparent flex items-center gap-2 cursor-pointer">
         <svg
           width="28"
           height="28"
@@ -55,8 +55,8 @@ export default function Navbar({ onCartClick }: NavbarProps) {
           />
           <defs>
             <linearGradient id="logo-grad" x1="2" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse">
-              <stop stopColor="#8b5cf6" />
-              <stop offset="1" stopColor="#3b82f6" />
+              <stop stopColor="#6366f1" />
+              <stop offset="1" stopColor="#4f46e5" />
             </linearGradient>
           </defs>
         </svg>
@@ -67,8 +67,8 @@ export default function Navbar({ onCartClick }: NavbarProps) {
         <li>
           <Link
             href="/"
-            className={`text-sm font-medium cursor-pointer relative py-1 transition-all duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-gradient-to-r after:from-primary after:to-secondary after:transition-all after:duration-300 hover:after:w-full ${
-              pathname === "/" ? "text-text-primary after:w-full" : "text-text-secondary hover:text-text-primary after:w-0"
+            className={`text-sm font-medium cursor-pointer relative py-1 transition-all duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-indigo-500 after:transition-all after:duration-300 hover:after:w-full ${
+              pathname === "/" ? "text-white after:w-full" : "text-slate-400 hover:text-white after:w-0"
             }`}
           >
             Home
@@ -77,8 +77,8 @@ export default function Navbar({ onCartClick }: NavbarProps) {
         <li>
           <Link
             href="/products"
-            className={`text-sm font-medium cursor-pointer relative py-1 transition-all duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-gradient-to-r after:from-primary after:to-secondary after:transition-all after:duration-300 hover:after:w-full ${
-              pathname === "/products" ? "text-text-primary after:w-full" : "text-text-secondary hover:text-text-primary after:w-0"
+            className={`text-sm font-medium cursor-pointer relative py-1 transition-all duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-indigo-500 after:transition-all after:duration-300 hover:after:w-full ${
+              pathname === "/products" ? "text-white after:w-full" : "text-slate-400 hover:text-white after:w-0"
             }`}
           >
             Shop
@@ -86,8 +86,8 @@ export default function Navbar({ onCartClick }: NavbarProps) {
         </li>
       </ul>
 
-      <form onSubmit={handleSearchSubmit} className="hidden md:flex items-center bg-white/5 border border-white/10 rounded-full px-4 py-1.5 w-[300px] transition-all duration-300 focus-within:border-primary focus-within:bg-white/10 focus-within:shadow-[0_0_10px_rgba(139,92,246,0.2)]">
-        <span className="text-text-secondary cursor-pointer flex items-center" onClick={handleSearchSubmit}>
+      <form onSubmit={handleSearchSubmit} className="hidden md:flex items-center bg-white/5 border border-white/5 rounded-full px-4 py-1.5 w-[300px] transition-all duration-300 focus-within:border-indigo-500/50 focus-within:bg-white/10">
+        <span className="text-slate-400 cursor-pointer flex items-center" onClick={handleSearchSubmit}>
           <svg
             width="18"
             height="18"
@@ -105,7 +105,7 @@ export default function Navbar({ onCartClick }: NavbarProps) {
         <input
           type="text"
           placeholder="Search products..."
-          className="bg-transparent border-none text-text-primary text-sm outline-none w-full pl-2 placeholder:text-text-muted"
+          className="bg-transparent border-none text-white text-sm outline-none w-full pl-2 placeholder:text-slate-500"
           value={searchVal}
           onChange={(e) => setSearchVal(e.target.value)}
         />
@@ -113,7 +113,7 @@ export default function Navbar({ onCartClick }: NavbarProps) {
 
       <div className="flex items-center gap-5">
         <button 
-          className="bg-transparent border border-white/10 text-text-primary cursor-pointer relative flex items-center justify-center w-10 h-10 rounded-full bg-white/3 transition-all duration-300 hover:bg-white/10 hover:border-primary hover:text-primary-hover hover:-translate-y-0.5" 
+          className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white cursor-pointer relative flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 active:scale-[0.95]" 
           onClick={onCartClick} 
           aria-label="Open Cart"
         >
@@ -132,7 +132,7 @@ export default function Navbar({ onCartClick }: NavbarProps) {
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
           </svg>
           {cartCount > 0 && (
-            <span className="absolute -top-1 -right-1 bg-gradient-to-r from-accent to-primary text-white text-[10px] font-bold w-[18px] h-[18px] rounded-full flex items-center justify-center shadow-md">
+            <span className="absolute -top-1 -right-1 bg-indigo-600 text-white text-[10px] font-bold w-[18px] h-[18px] rounded-full flex items-center justify-center shadow-md">
               {cartCount}
             </span>
           )}
@@ -142,7 +142,7 @@ export default function Navbar({ onCartClick }: NavbarProps) {
           <div className="flex items-center gap-3">
             <Link 
               href="/profile" 
-              className="bg-transparent border border-white/10 text-text-primary cursor-pointer relative flex items-center justify-center w-10 h-10 rounded-full bg-white/3 transition-all duration-300 hover:bg-white/10 hover:border-primary hover:text-primary-hover hover:-translate-y-0.5" 
+              className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white cursor-pointer relative flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 active:scale-[0.95]" 
               aria-label="User Profile"
             >
               <svg
@@ -159,14 +159,14 @@ export default function Navbar({ onCartClick }: NavbarProps) {
                 <circle cx="12" cy="7" r="4"></circle>
               </svg>
             </Link>
-            <span className="text-sm font-semibold text-text-primary hidden sm:inline">{user.fullName.split(" ")[0]}</span>
-            <button className="bg-transparent border border-error text-error px-4 py-1.5 rounded-full text-xs font-semibold cursor-pointer transition-all duration-300 hover:bg-error hover:text-white hover:shadow-[0_4px_12px_rgba(239,68,68,0.2)]" onClick={() => { logout(); router.push("/"); }}>
+            <span className="text-sm font-semibold text-slate-200 hidden sm:inline">{user.fullName.split(" ")[0]}</span>
+            <button className="bg-transparent border border-red-500/50 text-red-400 px-4 py-1.5 rounded-full text-xs font-semibold cursor-pointer transition-all duration-300 hover:bg-red-500 hover:text-white" onClick={() => { logout(); router.push("/"); }}>
               Logout
             </button>
           </div>
         ) : (
           <Link href="/login">
-            <button className="bg-gradient-to-r from-primary to-secondary text-white px-5 py-2 rounded-full text-sm font-semibold cursor-pointer shadow-[0_4px_15px_rgba(139,92,246,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(139,92,246,0.4)]">
+            <button className="bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 text-white px-5 py-2 rounded-full text-sm font-semibold cursor-pointer transition-all duration-300 shadow-[0_4px_15px_rgba(79,70,229,0.25)] active:scale-[0.98]">
               Sign In
             </button>
           </Link>

@@ -44,17 +44,17 @@ function SearchPageContent() {
       <CartOverlay isOpen={cartOpen} onClose={() => setCartOpen(false)} />
 
       <main className="flex-1 max-w-[1200px] mx-auto w-full px-6 py-10 md:px-10 flex flex-col gap-8">
-        <h1 className="text-2xl md:text-3xl font-extrabold text-text-primary">
-          Search Results for: <span className="text-primary-hover">&ldquo;{query}&rdquo;</span>
+        <h1 className="text-2xl md:text-3xl font-extrabold text-white">
+          Search Results for: <span className="text-indigo-400">&ldquo;{query}&rdquo;</span>
         </h1>
 
         {loading ? (
           <div className="flex flex-col items-center justify-center min-h-[400px] gap-4">
-            <div className="w-10 h-10 border-3 border-primary/20 border-t-primary rounded-full animate-spin" />
-            <p className="text-sm text-text-secondary">Searching catalog...</p>
+            <div className="w-10 h-10 border-2 border-indigo-600/20 border-t-indigo-500 rounded-full animate-spin" />
+            <p className="text-sm text-slate-400">Searching catalog...</p>
           </div>
         ) : products.length === 0 ? (
-          <div className="flex flex-col items-center justify-center min-h-[400px] gap-4 text-text-secondary">
+          <div className="flex flex-col items-center justify-center min-h-[400px] gap-4 text-slate-400">
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -79,8 +79,8 @@ export default function SearchPage() {
   return (
     <Suspense fallback={
       <div className="flex flex-col items-center justify-center min-h-[400px] gap-4">
-        <div className="w-10 h-10 border-3 border-primary/20 border-t-primary rounded-full animate-spin" />
-        <p className="text-sm text-text-secondary">Loading Search...</p>
+        <div className="w-10 h-10 border-2 border-indigo-600/20 border-t-indigo-500 rounded-full animate-spin" />
+        <p className="text-sm text-slate-400">Loading Search...</p>
       </div>
     }>
       <SearchPageContent />

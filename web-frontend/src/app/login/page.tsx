@@ -46,9 +46,9 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[radial-gradient(circle_at_10%_20%,rgba(139,92,246,0.1)_0%,transparent_40%),radial-gradient(circle_at_90%_80%,rgba(59,130,246,0.08)_0%,transparent_40%)] p-5">
-      <div className="w-full max-w-[440px] glassmorphism-card rounded-[28px] p-8 md:p-10 shadow-premium animate-[fadeIn_0.6s_ease-out]">
-        <div className="font-heading text-3xl font-extrabold tracking-wider bg-gradient-to-r from-white to-primary bg-clip-text text-transparent flex items-center justify-center gap-2 mb-6">
+    <div className="min-h-screen flex items-center justify-center p-5">
+      <div className="w-full max-w-[440px] bg-[#020617] border border-white/10 rounded-[28px] p-8 md:p-10 shadow-premium animate-[fadeIn_0.6s_ease-out]">
+        <div className="font-heading text-3xl font-extrabold tracking-wider bg-gradient-to-r from-white via-slate-200 to-indigo-400 bg-clip-text text-transparent flex items-center justify-center gap-2 mb-6">
           <svg
             width="32"
             height="32"
@@ -79,26 +79,26 @@ export default function LoginPage() {
             />
             <defs>
               <linearGradient id="logo-grad" x1="2" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse">
-                <stop stopColor="#8b5cf6" />
-                <stop offset="1" stopColor="#3b82f6" />
+                <stop stopColor="#6366f1" />
+                <stop offset="1" stopColor="#4f46e5" />
               </linearGradient>
             </defs>
           </svg>
           <span>AURA</span>
         </div>
 
-        <h1 className="text-2xl font-extrabold text-center mb-2 text-text-primary">Welcome Back</h1>
-        <p className="text-sm text-text-secondary text-center mb-8">Enter your details to sign in to your account</p>
+        <h1 className="text-2xl font-extrabold text-center mb-2 text-white">Welcome Back</h1>
+        <p className="text-sm text-slate-400 text-center mb-8">Enter your details to sign in to your account</p>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-          {error && <div className="bg-error/10 border border-error/20 text-error px-4 py-3 rounded-xl text-xs font-semibold text-center">{error}</div>}
+          {error && <div className="bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-3 rounded-xl text-xs font-semibold text-center">{error}</div>}
 
           <div className="flex flex-col gap-2">
-            <label htmlFor="username" className="text-xs font-semibold text-text-primary">Username</label>
+            <label htmlFor="username" className="text-xs font-semibold text-white">Username</label>
             <input
               type="text"
               id="username"
-              className="bg-white/2 border border-white/10 text-text-primary px-4 py-3 rounded-xl outline-none text-sm transition-all duration-300 focus:border-primary focus:bg-white/4 focus:shadow-[0_0_10px_rgba(139,92,246,0.15)] placeholder:text-text-muted"
+              className="bg-white/5 border border-white/10 text-white px-4 py-3 rounded-xl outline-none text-sm transition-all duration-300 focus:border-indigo-500 placeholder:text-slate-500"
               placeholder="Enter your username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -107,11 +107,11 @@ export default function LoginPage() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <label htmlFor="password" className="text-xs font-semibold text-text-primary">Password</label>
+            <label htmlFor="password" className="text-xs font-semibold text-white">Password</label>
             <input
               type="password"
               id="password"
-              className="bg-white/2 border border-white/10 text-text-primary px-4 py-3 rounded-xl outline-none text-sm transition-all duration-300 focus:border-primary focus:bg-white/4 focus:shadow-[0_0_10px_rgba(139,92,246,0.15)] placeholder:text-text-muted"
+              className="bg-white/5 border border-white/10 text-white px-4 py-3 rounded-xl outline-none text-sm transition-all duration-300 focus:border-indigo-500 placeholder:text-slate-500"
               placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -119,14 +119,14 @@ export default function LoginPage() {
             />
           </div>
 
-          <button type="submit" className="bg-gradient-to-r from-primary to-secondary text-white py-3.5 rounded-xl text-sm font-bold cursor-pointer shadow-[0_4px_15px_rgba(139,92,246,0.25)] mt-2 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(139,92,246,0.35)] disabled:opacity-50 disabled:cursor-not-allowed" disabled={loading}>
+          <button type="submit" className="bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 text-white py-3.5 rounded-xl text-sm font-bold cursor-pointer shadow-[0_4px_15px_rgba(79,70,229,0.25)] mt-2 transition-all duration-300 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed" disabled={loading}>
             {loading ? "Signing In..." : "Sign In"}
           </button>
         </form>
 
-        <p className="text-xs text-text-secondary text-center mt-6">
+        <p className="text-xs text-slate-400 text-center mt-6">
           Don&rsquo;t have an account?{" "}
-          <Link href="/register" className="text-primary-hover font-semibold underline hover:text-primary">
+          <Link href="/register" className="text-indigo-400 font-semibold underline hover:text-indigo-500">
             Sign Up
           </Link>
         </p>

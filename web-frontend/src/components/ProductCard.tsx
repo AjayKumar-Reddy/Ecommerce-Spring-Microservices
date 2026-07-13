@@ -18,9 +18,9 @@ export default function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    <div className="group glassmorphism-card rounded-2xl overflow-hidden flex flex-col h-full transition-all duration-300 relative hover:-translate-y-1.5 hover:border-primary-hover hover:shadow-[0_12px_30px_rgba(139,92,246,0.15)]">
+    <div className="group bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/15 rounded-2xl overflow-hidden flex flex-col h-full transition-all duration-300 relative hover:-translate-y-1 hover:shadow-premium">
       <Link href={`/products/${product.id}`} className="w-full aspect-square relative overflow-hidden bg-slate-950 block">
-        <span className="absolute top-3 left-3 bg-slate-900/85 backdrop-blur-xs border border-white/10 text-text-primary text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider z-10">
+        <span className="absolute top-3 left-3 bg-[#020617]/85 backdrop-blur-xs border border-white/5 text-slate-200 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider z-10">
           {product.category}
         </span>
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -33,16 +33,16 @@ export default function ProductCard({ product }: ProductCardProps) {
       <div className="p-5 flex flex-col flex-1 justify-between">
         <div className="mb-3.5">
           <Link href={`/products/${product.id}`}>
-            <h3 className="text-base font-bold text-text-primary mb-1.5 line-clamp-2 cursor-pointer transition-all duration-300 hover:text-primary-hover">
+            <h3 className="text-base font-bold text-white mb-1.5 line-clamp-2 cursor-pointer transition-all duration-300 hover:text-indigo-400">
               {product.name}
             </h3>
           </Link>
-          <p className="text-xs text-text-secondary line-clamp-2 leading-relaxed">{product.description}</p>
+          <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">{product.description}</p>
         </div>
         <div className="flex items-center justify-between mt-auto">
-          <span className="text-lg font-extrabold text-primary-hover">${product.price.toFixed(2)}</span>
+          <span className="text-lg font-extrabold text-indigo-400">${product.price.toFixed(2)}</span>
           <button
-            className="bg-white/5 border border-white/10 text-text-primary w-10 h-10 rounded-full cursor-pointer flex items-center justify-center transition-all duration-300 hover:bg-gradient-to-r hover:from-primary hover:to-secondary hover:border-transparent hover:text-white hover:scale-110 hover:shadow-[0_4px_12px_rgba(139,92,246,0.25)]"
+            className="bg-white/5 border border-white/5 text-white w-10 h-10 rounded-full cursor-pointer flex items-center justify-center transition-all duration-300 hover:bg-indigo-600 hover:border-transparent hover:text-white hover:scale-105 active:scale-95"
             onClick={handleAddToCart}
             aria-label="Add to cart"
           >

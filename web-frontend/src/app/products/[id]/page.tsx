@@ -60,7 +60,7 @@ export default function ProductDetailsPage({ params }: PageProps) {
       <CartOverlay isOpen={cartOpen} onClose={() => setCartOpen(false)} />
 
       <main className="flex-1 max-w-[1200px] mx-auto w-full px-6 py-10 md:px-10">
-        <Link href="/products" className="inline-flex items-center gap-2 text-text-secondary text-sm font-semibold mb-8 transition-all duration-300 hover:text-primary-hover">
+        <Link href="/products" className="inline-flex items-center gap-2 text-slate-400 text-sm font-semibold mb-8 transition-all duration-300 hover:text-indigo-400">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <line x1="19" y1="12" x2="5" y2="12"></line>
             <polyline points="12 19 5 12 12 5"></polyline>
@@ -70,11 +70,11 @@ export default function ProductDetailsPage({ params }: PageProps) {
 
         {loading ? (
           <div className="flex flex-col items-center justify-center min-h-[400px] gap-4">
-            <div className="w-10 h-10 border-3 border-primary/20 border-t-primary rounded-full animate-spin" />
-            <p className="text-sm text-text-secondary">Loading product details...</p>
+            <div className="w-10 h-10 border-2 border-indigo-600/20 border-t-indigo-500 rounded-full animate-spin" />
+            <p className="text-sm text-slate-400">Loading product details...</p>
           </div>
         ) : error || !product ? (
-          <div className="flex flex-col items-center justify-center min-h-[400px] gap-4 text-text-secondary">
+          <div className="flex flex-col items-center justify-center min-h-[400px] gap-4 text-slate-400">
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--error)" strokeWidth="1.5">
               <circle cx="12" cy="12" r="10"></circle>
               <line x1="12" y1="8" x2="12" y2="12"></line>
@@ -87,33 +87,33 @@ export default function ProductDetailsPage({ params }: PageProps) {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start">
             {/* Image */}
-            <div className="bg-slate-950 border border-white/10 rounded-3xl overflow-hidden aspect-square relative shadow-premium">
+            <div className="bg-slate-950 border border-white/5 rounded-3xl overflow-hidden aspect-square relative shadow-premium">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={product.imageUrl} alt={product.name} className="absolute inset-0 w-full h-full object-cover" />
             </div>
 
             {/* Info */}
             <div className="flex flex-col">
-              <span className="text-xs font-bold text-primary-hover uppercase tracking-wider mb-3">{product.category}</span>
-              <h1 className="text-3xl md:text-4xl font-extrabold leading-tight text-text-primary mb-4">{product.name}</h1>
-              <span className="text-2xl md:text-3xl font-extrabold text-text-primary mb-6">${product.price.toFixed(2)}</span>
+              <span className="text-xs font-bold text-indigo-400 uppercase tracking-wider mb-3">{product.category}</span>
+              <h1 className="text-3xl md:text-4xl font-extrabold leading-tight text-white mb-4">{product.name}</h1>
+              <span className="text-2xl md:text-3xl font-extrabold text-indigo-400 mb-6">${product.price.toFixed(2)}</span>
               
               <div className="h-[1px] bg-white/10 mb-6" />
 
-              <h2 className="text-sm font-bold mb-3 text-text-primary uppercase tracking-wider">Description</h2>
-              <p className="text-sm md:text-base text-text-secondary leading-relaxed mb-8">{product.description}</p>
+              <h2 className="text-sm font-bold mb-3 text-white uppercase tracking-wider">Description</h2>
+              <p className="text-sm md:text-base text-slate-300 leading-relaxed mb-8">{product.description}</p>
 
               <div className="flex flex-col gap-3 mb-8">
-                <div className="flex items-center gap-2 text-sm text-text-secondary">
-                  <span className="font-semibold text-text-primary">Availability:</span>
+                <div className="flex items-center gap-2 text-sm text-slate-300">
+                  <span className="font-semibold text-white">Availability:</span>
                   {product.stockQuantity > 0 ? (
-                    <span className="text-success font-bold">In Stock ({product.stockQuantity} available)</span>
+                    <span className="text-green-400 font-bold">In Stock ({product.stockQuantity} available)</span>
                   ) : (
-                    <span className="text-error font-bold">Out of Stock</span>
+                    <span className="text-red-400 font-bold">Out of Stock</span>
                   )}
                 </div>
-                <div className="flex items-center gap-2 text-sm text-text-secondary">
-                  <span className="font-semibold text-text-primary">Seller ID:</span>
+                <div className="flex items-center gap-2 text-sm text-slate-300">
+                  <span className="font-semibold text-white">Seller ID:</span>
                   <span>{product.sellerId || "Anonymous Seller"}</span>
                 </div>
               </div>
@@ -123,17 +123,17 @@ export default function ProductDetailsPage({ params }: PageProps) {
               {/* Actions */}
               <div className="flex gap-5 items-center">
                 {product.stockQuantity > 0 && (
-                  <div className="flex items-center border border-white/10 rounded-full bg-white/5 p-1">
+                  <div className="flex items-center border border-white/5 rounded-full bg-white/5 p-1">
                     <button 
-                      className="bg-transparent border-none text-text-secondary w-9 h-9 rounded-full cursor-pointer flex items-center justify-center text-lg transition-all duration-300 hover:bg-white/10 hover:text-text-primary disabled:opacity-30 disabled:cursor-not-allowed" 
+                      className="bg-transparent border-none text-slate-400 w-9 h-9 rounded-full cursor-pointer flex items-center justify-center text-lg transition-all duration-300 hover:bg-white/10 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed" 
                       onClick={() => handleQtyChange(quantity - 1)}
                       disabled={quantity <= 1}
                     >
                       -
                     </button>
-                    <span className="text-base font-bold px-4 min-w-[30px] text-center">{quantity}</span>
+                    <span className="text-base font-bold px-4 min-w-[30px] text-center text-white">{quantity}</span>
                     <button 
-                      className="bg-transparent border-none text-text-secondary w-9 h-9 rounded-full cursor-pointer flex items-center justify-center text-lg transition-all duration-300 hover:bg-white/10 hover:text-text-primary disabled:opacity-30 disabled:cursor-not-allowed" 
+                      className="bg-transparent border-none text-slate-400 w-9 h-9 rounded-full cursor-pointer flex items-center justify-center text-lg transition-all duration-300 hover:bg-white/10 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed" 
                       onClick={() => handleQtyChange(quantity + 1)}
                       disabled={quantity >= product.stockQuantity}
                     >
@@ -142,7 +142,7 @@ export default function ProductDetailsPage({ params }: PageProps) {
                   </div>
                 )}
                 <button
-                  className="flex-1 bg-gradient-to-r from-primary to-secondary text-white py-3.5 rounded-full text-base font-bold cursor-pointer shadow-[0_4px_15px_rgba(139,92,246,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(139,92,246,0.4)] disabled:bg-white/10 disabled:text-text-muted disabled:shadow-none disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2.5"
+                  className="flex-1 bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 text-white py-3.5 rounded-full text-base font-bold cursor-pointer shadow-[0_4px_15px_rgba(79,70,229,0.25)] transition-all duration-300 disabled:bg-white/10 disabled:text-slate-500 disabled:shadow-none disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2.5 active:scale-[0.98]"
                   onClick={handleAddToCart}
                   disabled={product.stockQuantity <= 0}
                 >

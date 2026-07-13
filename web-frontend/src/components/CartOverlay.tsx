@@ -30,13 +30,13 @@ export default function CartOverlay({ isOpen, onClose }: CartOverlayProps) {
 
       {/* Cart Panel */}
       <div
-        className={`fixed top-0 right-0 bottom-0 w-full max-w-[450px] bg-slate-900 border-l border-white/10 shadow-2xl flex flex-col z-50 transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 bottom-0 w-full max-w-[450px] bg-[#020617] border-l border-white/10 shadow-2xl flex flex-col z-50 transform transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="p-6 border-b border-white/10 flex items-center justify-between">
-          <h2 className="text-xl font-bold">Your Cart</h2>
-          <button className="bg-transparent border-none text-text-secondary cursor-pointer p-1.5 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-white/5 hover:text-text-primary" onClick={onClose} aria-label="Close panel">
+          <h2 className="text-xl font-bold text-white">Your Cart</h2>
+          <button className="bg-transparent border-none text-slate-400 cursor-pointer p-1.5 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-white/5 hover:text-white" onClick={onClose} aria-label="Close panel">
             <svg
               width="24"
               height="24"
@@ -55,8 +55,8 @@ export default function CartOverlay({ isOpen, onClose }: CartOverlayProps) {
 
         <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-5">
           {cart.length === 0 ? (
-            <div className="flex flex-col items-center justify-center h-full text-text-secondary gap-4">
-              <span className="text-text-muted">
+            <div className="flex flex-col items-center justify-center h-full text-slate-400 gap-4">
+              <span className="text-slate-600">
                 <svg
                   width="64"
                   height="64"
@@ -81,34 +81,34 @@ export default function CartOverlay({ isOpen, onClose }: CartOverlayProps) {
                 <img
                   src={item.product.imageUrl}
                   alt={item.product.name}
-                  className="w-20 h-20 rounded-xl object-cover bg-white/5 border border-white/10"
+                  className="w-20 h-20 rounded-xl object-cover bg-white/5 border border-white/5"
                 />
                 <div className="flex-1 flex flex-col justify-between">
                   <div>
-                    <h3 className="text-sm font-semibold text-text-primary mb-1 line-clamp-2">{item.product.name}</h3>
-                    <span className="text-[11px] text-text-muted uppercase tracking-wider">{item.product.category}</span>
+                    <h3 className="text-sm font-semibold text-white mb-1 line-clamp-2">{item.product.name}</h3>
+                    <span className="text-[11px] text-slate-400 uppercase tracking-wider">{item.product.category}</span>
                   </div>
                   <div className="flex justify-between items-center mt-2">
-                    <span className="text-base font-bold text-primary-hover">
+                    <span className="text-base font-bold text-indigo-400">
                       ${(item.product.price * item.quantity).toFixed(2)}
                     </span>
-                    <div className="flex items-center border border-white/10 rounded-full bg-white/5 overflow-hidden">
+                    <div className="flex items-center border border-white/5 rounded-full bg-white/5 overflow-hidden">
                       <button
-                        className="bg-transparent border-none text-text-secondary w-7 h-7 cursor-pointer flex items-center justify-center text-sm transition-all duration-300 hover:bg-white/10 hover:text-text-primary"
+                        className="bg-transparent border-none text-slate-400 w-7 h-7 cursor-pointer flex items-center justify-center text-sm transition-all duration-300 hover:bg-white/10 hover:text-white"
                         onClick={() => updateCartQuantity(item.product.id, item.quantity - 1)}
                       >
                         -
                       </button>
-                      <span className="text-sm font-semibold px-2 min-w-5 text-center">{item.quantity}</span>
+                      <span className="text-sm font-semibold px-2 min-w-5 text-center text-slate-200">{item.quantity}</span>
                       <button
-                        className="bg-transparent border-none text-text-secondary w-7 h-7 cursor-pointer flex items-center justify-center text-sm transition-all duration-300 hover:bg-white/10 hover:text-text-primary"
+                        className="bg-transparent border-none text-slate-400 w-7 h-7 cursor-pointer flex items-center justify-center text-sm transition-all duration-300 hover:bg-white/10 hover:text-white"
                         onClick={() => updateCartQuantity(item.product.id, item.quantity + 1)}
                       >
                         +
                       </button>
                     </div>
                     <button
-                      className="bg-transparent border-none text-text-muted cursor-pointer transition-all duration-300 hover:text-error"
+                      className="bg-transparent border-none text-slate-500 cursor-pointer transition-all duration-300 hover:text-red-400"
                       onClick={() => removeFromCart(item.product.id)}
                       aria-label="Remove item"
                     >
@@ -136,12 +136,12 @@ export default function CartOverlay({ isOpen, onClose }: CartOverlayProps) {
         </div>
 
         {cart.length > 0 && (
-          <div className="p-6 border-t border-white/10 bg-slate-950">
+          <div className="p-6 border-t border-white/10 bg-[#010409]">
             <div className="flex justify-between mb-5">
-              <span className="text-sm text-text-secondary">Subtotal</span>
-              <span className="text-xl font-extrabold text-text-primary">${cartTotal.toFixed(2)}</span>
+              <span className="text-sm text-slate-400">Subtotal</span>
+              <span className="text-xl font-extrabold text-white">${cartTotal.toFixed(2)}</span>
             </div>
-            <button className="w-full bg-gradient-to-r from-primary to-secondary text-white py-3 rounded-full text-sm font-bold cursor-pointer shadow-[0_4px_15px_rgba(139,92,246,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(139,92,246,0.4)] flex items-center justify-center gap-2" onClick={handleCheckout}>
+            <button className="w-full bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 text-white py-3 rounded-xl text-sm font-bold cursor-pointer shadow-[0_4px_15px_rgba(79,70,229,0.25)] transition-all duration-300 flex items-center justify-center gap-2 active:scale-[0.98]" onClick={handleCheckout}>
               <span>Proceed to Checkout</span>
               <svg
                 width="18"
